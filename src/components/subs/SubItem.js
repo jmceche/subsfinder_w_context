@@ -1,7 +1,7 @@
 //Agregar evento para descargar subtitulo
 // ver video react todo list
 
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const SubItem = ({
@@ -13,31 +13,35 @@ const SubItem = ({
   movieKind,
   serieSeason,
   serieEpisode,
+  subFormat,
 }) => {
   return (
-    <Fragment>
-      <tr>
-        <td>
-          <h4>{title}</h4>
-          {movieKind === "episode" ? (
-            <span>
-              <p>{`Season: ${serieSeason}`}</p>
-              <p>{`Episode: ${serieEpisode}`}</p>
-            </span>
-          ) : (
-            <p></p>
-          )}
-          <a href={subLink}>{subFile}</a>
-        </td>
-        <td>{subLang}</td>
-        <td>{uploadDate}</td>
-        <td>
-          <a href={subLink}>
-            <i className='fas fa-file-download all-center'></i>
-          </a>
-        </td>
-      </tr>
-    </Fragment>
+    <div id='sub-card' className='card'>
+      <h3 className='text-center lead'>{title}</h3>
+      {movieKind === "episode" && (
+        <span>
+          <p>{`Season: ${serieSeason}`}</p>
+          <p>{`Episode: ${serieEpisode}`}</p>
+        </span>
+      )}
+      <div className='link-container'>
+        <a className='wrapper' href={subLink}>
+          {subFile}
+        </a>
+      </div>
+      <p>
+        <strong>Language:</strong> {subLang}
+      </p>
+      <p>
+        <strong>Uploaded:</strong> {uploadDate}
+      </p>
+      <a
+        href={subLink.slice(0, -2) + subFormat}
+        className='btn btn-block btn-primary text-center'
+      >
+        Download
+      </a>
+    </div>
   );
 };
 

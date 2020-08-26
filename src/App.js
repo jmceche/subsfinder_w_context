@@ -3,10 +3,8 @@ import Navbar from "./components/layout/Navbar";
 import NameSearch from "./components/subs/NameSearch";
 import HashSearch from "./components/subs/HashSearch";
 import SubList from "./components/subs/SubList";
-import Alert from "./components/layout/Alert";
 import About from "./components/pages/About";
-import Spinner from "./components/layout/Spinner";
-import NotFound from "./components/subs/NotFound";
+import Alert from "./components/layout/Alert";
 import ClearSub from "./components/subs/ClearSub";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -23,18 +21,19 @@ const App = () => {
         <Router>
           <div className='App'>
             <Navbar />
-            <div className='container'>
-              <Alert alert={alert} />
-              <Switch>
-                <Route exact path='/' component={NameSearch} />
-                <Route exact path='/hash' component={HashSearch} />
-              </Switch>
-              <Route exact path='/about' component={About} />
-
-              <ClearSub />
-              <NotFound />
-              <Spinner />
-              <SubList />
+            <div className='container grid-2'>
+              <div id='left'>
+                <Alert alert={alert} />
+                <Switch>
+                  <Route exact path='/' component={NameSearch} />
+                  <Route exact path='/hash' component={HashSearch} />
+                  <Route exact path='/about' component={About} />
+                </Switch>
+                <ClearSub />
+              </div>
+              <div id='right' className='container'>
+                <SubList />
+              </div>
             </div>
           </div>
         </Router>

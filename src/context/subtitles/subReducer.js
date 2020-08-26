@@ -4,6 +4,9 @@ import {
   CLEAR_SUBS,
   SET_LANG,
   SET_NO_RES,
+  SET_NAME_DATA,
+  SET_SUB_FILE,
+  CLEAR_INPUTS,
 } from "../types";
 
 export default (state, action) => {
@@ -33,10 +36,30 @@ export default (state, action) => {
         loading: false,
         noRes: false,
       };
+    case CLEAR_INPUTS:
+      return {
+        ...state,
+        title: "",
+        season: "",
+        episode: "",
+        file: null,
+      };
     case SET_LANG:
       return {
         ...state,
         lang: action.payload,
+      };
+    case SET_NAME_DATA:
+      return {
+        ...state,
+        title: action.payload.title,
+        season: action.payload.season,
+        episode: action.payload.episode,
+      };
+    case SET_SUB_FILE:
+      return {
+        ...state,
+        file: action.payload,
       };
 
     default:

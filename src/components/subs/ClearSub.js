@@ -3,13 +3,16 @@ import SubContext from "../../context/subtitles/subContext";
 
 const ClearSub = () => {
   const subContext = useContext(SubContext);
+
+  const clearAll = () => {
+    subContext.clearSubs();
+    subContext.clearInputs();
+  };
+
   return (
     <Fragment>
       {subContext.subs.length > 0 && (
-        <button
-          className='btn btn-light btn-block'
-          onClick={subContext.clearSubs}
-        >
+        <button className='btn btn-light btn-block' onClick={clearAll}>
           Clear
         </button>
       )}

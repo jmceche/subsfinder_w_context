@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import hashFile from "./hashFile";
 import Languages from "./Languages";
 import SubContext from "../../context/subtitles/subContext";
@@ -8,9 +8,15 @@ const HashSearch = () => {
   const subContext = useContext(SubContext);
   const alertContext = useContext(AlertContext);
 
-  const [file, setFile] = useState(null);
+  const { file, setFileInput } = subContext;
 
-  //Construct URL for hash search
+  // Clear Inputs when component loads
+  useEffect(() => {
+    subContext.clearInputs();
+    //eslint-disable-next-line
+  }, []);
+
+  // Function to construct URL
   const hashUrlConstructor = (fileSize, hash, lang) => {
     const url = encodeURI(
       `/moviebytesize-${fileSize}/moviehash-${hash}/sublanguageid-${lang}`
@@ -19,7 +25,7 @@ const HashSearch = () => {
   };
 
   const onChange = (e) => {
-    setFile(e.target.files[0]);
+    setFileInput(e.target.files[0]);
   };
 
   const onSubmit = (e) => {

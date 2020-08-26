@@ -1,7 +1,7 @@
 // You can search by name using either a movie name or
 // a serie name adding the season and episode number
 
-import React, { useReducer, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Languages from "./Languages";
 import SubContext from "../../context/subtitles/subContext";
 import AlertContext from "../../context/alert/alertContext";
@@ -10,14 +10,14 @@ const NameSearch = () => {
   const alertContext = useContext(AlertContext);
   const subContext = useContext(SubContext);
 
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      title: "",
-      season: "",
-      episode: "",
-    }
-  );
+  const { title, season, episode, setNameInput, searchSubs } = subContext;
+  const inputs = { title, season, episode };
+
+  // Clear Inputs when component loads
+  useEffect(() => {
+    subContext.clearInputs();
+    //eslint-disable-next-line
+  }, []);
 
   //Construct URL for name search
   const nameUrlConstructor = (title, season, episode, lang) => {
@@ -32,21 +32,16 @@ const NameSearch = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (userInput.title === "") {
+    if (title === "") {
       alertContext.setAlert("Please, enter a title", "light");
     } else {
-      const url = nameUrlConstructor(
-        userInput.title,
-        userInput.season,
-        userInput.episode,
-        subContext.lang
-      );
-      subContext.searchSubs(url);
+      const url = nameUrlConstructor(title, season, episode, subContext.lang);
+      searchSubs(url);
     }
   };
 
   const onChange = (e) => {
-    setUserInput({ [e.target.name]: e.target.value });
+    setNameInput({ ...inputs, [e.target.name]: e.target.value });
   };
 
   return (
@@ -56,27 +51,32 @@ const NameSearch = () => {
         <h4>If you want to search for movies, ignore season and episode</h4>
       </div>
       <form onSubmit={onSubmit} className='form-text'>
-        <input
-          type='text'
-          name='title'
-          placeholder='Serie or Movie title'
-          value={userInput.title}
-          onChange={onChange}
-        />
-        <input
-          type='number'
-          name='season'
-          placeholder='Season (for series only)'
-          value={userInput.season}
-          onChange={onChange}
-        />
-        <input
-          type='number'
-          name='episode'
-          placeholder='Episode (for series only)'
-          value={userInput.episode}
-          onChange={onChange}
-        />
+        <div className='title'>
+          <label htmlFor='title'>Title:</label>
+          <input type='text' name='title' value={title} onChange={onChange} />
+        </div>
+        <div className='series grid-2'>
+          <div className='season'>
+            <label htmlFor='season'>Season:</label>
+            <input
+              type='number'
+              name='season'
+              min='1'
+              value={season}
+              onChange={onChange}
+            />
+          </div>
+          <div className='episode'>
+            <label htmlFor='episode'>Episode:</label>
+            <input
+              type='number'
+              name='episode'
+              min='1'
+              value={episode}
+              onChange={onChange}
+            />
+          </div>
+        </div>
         <Languages />
         <input
           type='submit'

@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
 import SubItem from "./SubItem";
+
+import Spinner from "../layout/Spinner";
+import NotFound from "./NotFound";
+
 import SubContext from "../../context/subtitles/subContext";
 
 const SubList = () => {
@@ -8,33 +12,25 @@ const SubList = () => {
   const { subs } = subContext; // destructure from context
 
   return (
-    subs.length > 0 && (
-      <table className='list text-center'>
-        <thead>
-          <tr>
-            <th id='name'>Name</th>
-            <th>Language</th>
-            <th>Uploaded</th>
-            <th>Download</th>
-          </tr>
-        </thead>
-        <tbody>
-          {subs.map((sub) => (
-            <SubItem
-              key={sub.IDSubtitleFile}
-              title={sub.MovieName}
-              subFile={sub.SubFileName}
-              subLink={sub.ZipDownloadLink}
-              uploadDate={sub.SubAddDate}
-              subLang={sub.LanguageName}
-              movieKind={sub.MovieKind}
-              serieSeason={sub.SeriesSeason}
-              serieEpisode={sub.SeriesEpisode}
-            />
-          ))}
-        </tbody>
-      </table>
-    )
+    <div>
+      <NotFound />
+      <Spinner />
+      {subs.length > 0 &&
+        subs.map((sub) => (
+          <SubItem
+            key={sub.IDSubtitleFile}
+            title={sub.MovieName}
+            subFile={sub.SubFileName}
+            subLink={sub.SubDownloadLink}
+            uploadDate={sub.SubAddDate}
+            subLang={sub.LanguageName}
+            movieKind={sub.MovieKind}
+            serieSeason={sub.SeriesSeason}
+            serieEpisode={sub.SeriesEpisode}
+            subFormat={sub.SubFormat}
+          />
+        ))}
+    </div>
   );
 };
 
