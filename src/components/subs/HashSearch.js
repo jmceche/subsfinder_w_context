@@ -3,6 +3,7 @@ import hashFile from "./hashFile";
 import Languages from "./Languages";
 import SubContext from "../../context/subtitles/subContext";
 import AlertContext from "../../context/alert/alertContext";
+import ClearSub from "./ClearSub";
 
 const HashSearch = () => {
   const subContext = useContext(SubContext);
@@ -31,7 +32,7 @@ const HashSearch = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (file === null) {
-      alertContext.setAlert("You need to select a file first", "light");
+      alertContext.setAlert("You need to select a file first", "danger");
     } else {
       hashFile(file, (file, hash) => {
         console.log(file.size, hash);
@@ -42,7 +43,7 @@ const HashSearch = () => {
   };
 
   return (
-    <div className='all-center'>
+    <div className='all-center card'>
       <h1>Search Subtitles by File</h1>
       <h4>Upload your file and click search</h4>
       <form onSubmit={onSubmit} className='form-text'>
@@ -60,6 +61,7 @@ const HashSearch = () => {
           className='btn btn-block btn-dark'
         />
       </form>
+      <ClearSub />
     </div>
   );
 };

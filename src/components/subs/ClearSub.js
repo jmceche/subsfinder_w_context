@@ -12,7 +12,7 @@ const ClearSub = () => {
   return (
     <Fragment>
       {subContext.subs.length > 0 && (
-        <button className='btn btn-light btn-block' onClick={clearAll}>
+        <button className='btn btn-white btn-block' onClick={clearAll}>
           Clear
         </button>
       )}

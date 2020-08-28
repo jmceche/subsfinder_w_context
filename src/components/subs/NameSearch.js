@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from "react";
 import Languages from "./Languages";
 import SubContext from "../../context/subtitles/subContext";
 import AlertContext from "../../context/alert/alertContext";
+import ClearSub from "./ClearSub";
 
 const NameSearch = () => {
   const alertContext = useContext(AlertContext);
@@ -33,7 +34,7 @@ const NameSearch = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (title === "") {
-      alertContext.setAlert("Please, enter a title", "light");
+      alertContext.setAlert("Please, enter a title", "danger");
     } else {
       const url = nameUrlConstructor(title, season, episode, subContext.lang);
       searchSubs(url);
@@ -45,7 +46,7 @@ const NameSearch = () => {
   };
 
   return (
-    <div className='text-center'>
+    <div className='text-center card'>
       <div>
         <h1>Search Subtitles by Name</h1>
         <h4>If you want to search for movies, ignore season and episode</h4>
@@ -55,25 +56,28 @@ const NameSearch = () => {
           <label htmlFor='title'>Title:</label>
           <input type='text' name='title' value={title} onChange={onChange} />
         </div>
-        <div className='series grid-2'>
+        <div className='series'>
           <div className='season'>
-            <label htmlFor='season'>Season:</label>
+            <span>S</span>
             <input
               type='number'
               name='season'
               min='1'
               value={season}
               onChange={onChange}
+              placeholder='01'
             />
           </div>
+
           <div className='episode'>
-            <label htmlFor='episode'>Episode:</label>
+            <span>E</span>
             <input
               type='number'
               name='episode'
               min='1'
               value={episode}
               onChange={onChange}
+              placeholder='01'
             />
           </div>
         </div>
@@ -84,6 +88,7 @@ const NameSearch = () => {
           className='btn btn-block btn-dark'
         />
       </form>
+      <ClearSub />
     </div>
   );
 };

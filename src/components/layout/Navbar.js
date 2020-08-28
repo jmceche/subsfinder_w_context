@@ -8,17 +8,17 @@ const Navbar = ({ title }) => {
   return (
     <nav className='navbar bg-primary'>
       <h1>{title}</h1>
-      <ul>
+      <div className='searches'>
         <NavLink exact to='/' activeClassName='selected'>
           Name Search
         </NavLink>
         <NavLink exact to='/hash' activeClassName='selected'>
           Hash Search
         </NavLink>
-        <NavLink exact to='/about' activeClassName='selected'>
-          About
-        </NavLink>
-      </ul>
+      </div>
+      <NavLink exact to='/about' activeClassName='selected'>
+        About
+      </NavLink>
     </nav>
   );
 };

@@ -8,7 +8,7 @@
   --dark-color: #0e153a;
   --light-color: #22d1ee;
   --danger-color: #dc3545;
-  --success-color: #ddd;
+  --success-color: #aaa;
 }
 
 * {
@@ -21,7 +21,7 @@ body {
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: var(--secondary-color);
+  background-color: #fafafa;
   color: var(--primary-color);
 }
 
@@ -31,7 +31,7 @@ a {
 }
 
 a:hover {
-  color: var(--secondary-color);
+  color: var(--success-color);
 }
 
 ul {
@@ -185,7 +185,7 @@ img {
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 }
 
 .grid-3 {
@@ -245,7 +245,7 @@ img {
   padding: 0.7rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
+  background: var(--danger-color);
   color: rgb(73, 73, 73);
 }
 
@@ -340,6 +340,10 @@ textarea {
   background: #fff;
 }
 
+input[type="number"] {
+  text-align: right;
+}
+
 select {
   box-sizing: border-box;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
@@ -370,13 +374,16 @@ label {
   margin-bottom: 1rem;
 }
 
-.navbar ul {
-  display: flex;
+.searches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  font-size: 1.5rem;
 }
 
 .navbar a {
   color: #fff;
-  padding: 0.45rem;
+  /* padding: 0.45rem; */
   margin: 0 0.25rem;
 }
 
@@ -429,24 +436,23 @@ label {
   border: 1px solid;
   display: block;
   padding: 6px 12px;
+  margin: 0;
   cursor: pointer;
+  background: #fafafa;
+  border-radius: 5px;
 }
 
 .selected {
   font-weight: bold;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 0;
 }
 
-.season input,
-.episode input {
-  margin-top: 0;
-}
 .title input {
-  margin-top: 0;
+  margin: 0;
 }
 
-.title label,
-.season label,
-.episode label {
+.title label {
   display: block;
   text-align: start;
 }
@@ -455,14 +461,69 @@ label {
   background-color: #fff;
   border-radius: 5px;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0;
 }
 .wrapper {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 #sub-card p strong {
   font-size: 1.1rem;
+}
+
+.series {
+  display: flex;
+  flex-direction: row;
+}
+.series div {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  width: 18%;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.series > div > span {
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2.3rem;
+  line-height: 2;
+  color: #000;
+  background: #eee;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.series .episode input {
+  border-radius: 0 5px 5px 0;
+}
+.series .season span,
+.series .season input {
+  border-radius: 5px 0 0 5px;
+  border-right: 1px solid #bbb;
+}
+
+.series div input {
+  width: 100%;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* React Transition Animation*/
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }

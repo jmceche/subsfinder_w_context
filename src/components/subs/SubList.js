@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import SubItem from "./SubItem";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Spinner from "../layout/Spinner";
 import NotFound from "./NotFound";
@@ -15,21 +16,30 @@ const SubList = () => {
     <div>
       <NotFound />
       <Spinner />
-      {subs.length > 0 &&
-        subs.map((sub) => (
-          <SubItem
-            key={sub.IDSubtitleFile}
-            title={sub.MovieName}
-            subFile={sub.SubFileName}
-            subLink={sub.SubDownloadLink}
-            uploadDate={sub.SubAddDate}
-            subLang={sub.LanguageName}
-            movieKind={sub.MovieKind}
-            serieSeason={sub.SeriesSeason}
-            serieEpisode={sub.SeriesEpisode}
-            subFormat={sub.SubFormat}
-          />
-        ))}
+      <TransitionGroup>
+        {subs.length > 0 &&
+          subs.map((sub) => (
+            <CSSTransition
+              in={subs}
+              key={sub.IDSubtitleFile}
+              timeout={500}
+              classNames='item'
+            >
+              <SubItem
+                key={sub.IDSubtitleFile}
+                title={sub.MovieName}
+                subFile={sub.SubFileName}
+                subLink={sub.SubDownloadLink}
+                uploadDate={sub.SubAddDate}
+                subLang={sub.LanguageName}
+                movieKind={sub.MovieKind}
+                serieSeason={sub.SeriesSeason}
+                serieEpisode={sub.SeriesEpisode}
+                subFormat={sub.SubFormat}
+              />
+            </CSSTransition>
+          ))}
+      </TransitionGroup>
     </div>
   );
 };

@@ -5,7 +5,6 @@ import HashSearch from "./components/subs/HashSearch";
 import SubList from "./components/subs/SubList";
 import About from "./components/pages/About";
 import Alert from "./components/layout/Alert";
-import ClearSub from "./components/subs/ClearSub";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -29,9 +28,8 @@ const App = () => {
                   <Route exact path='/hash' component={HashSearch} />
                   <Route exact path='/about' component={About} />
                 </Switch>
-                <ClearSub />
               </div>
-              <div id='right' className='container'>
+              <div id='right'>
                 <SubList />
               </div>
             </div>

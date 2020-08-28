@@ -19,10 +19,10 @@ const SubItem = ({
     <div id='sub-card' className='card'>
       <h3 className='text-center lead'>{title}</h3>
       {movieKind === "episode" && (
-        <span>
-          <p>{`Season: ${serieSeason}`}</p>
-          <p>{`Episode: ${serieEpisode}`}</p>
-        </span>
+        <p>{`S${serieSeason.padStart(2, "0")}E${serieEpisode.padStart(
+          2,
+          "0"
+        )}`}</p>
       )}
       <div className='link-container'>
         <a className='wrapper' href={subLink}>
