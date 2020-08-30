@@ -129,75 +129,11 @@ img {
   padding-bottom: 0.3rem;
 }
 
-/* Padding */
-.p {
-  padding: 0.5rem;
-}
-.p-1 {
-  padding: 1rem;
-}
-.p-2 {
-  padding: 2rem;
-}
-.p-3 {
-  padding: 3rem;
-}
-.py {
-  padding: 0.5rem 0;
-}
-.py-1 {
-  padding: 1rem 0;
-}
-.py-2 {
-  padding: 2rem 0;
-}
-.py-3 {
-  padding: 3rem 0;
-}
-
-/* Margin */
-.m {
-  margin: 0.5rem;
-}
-.m-1 {
-  margin: 1rem;
-}
-.m-2 {
-  margin: 2rem;
-}
-.m-3 {
-  margin: 3rem;
-}
-.my {
-  margin: 0.5rem 0;
-}
-.my-1 {
-  margin: 1rem 0;
-}
-.my-2 {
-  margin: 2rem 0;
-}
-.my-3 {
-  margin: 3rem 0;
-}
-
 /* Grid */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-}
-
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
 }
 
 .btn {
@@ -357,10 +293,23 @@ input[type="submit"],
 button {
   font: inherit;
 }
+input:focus,
+select:focus {
+  outline: none;
+}
 
 label {
   color: #000;
   margin-left: 0.5rem;
+}
+.custom-file-upload {
+  border: 1px solid;
+  display: block;
+  padding: 6px 12px;
+  margin: 0;
+  cursor: pointer;
+  background: #fafafa;
+  border-radius: 5px;
 }
 /* Navbar */
 .navbar {
@@ -401,9 +350,7 @@ label {
     display: none;
   }
 
-  .grid-2,
-  .grid-3,
-  .grid-4 {
+  .grid-2 {
     grid-template-columns: 1fr;
   }
 
@@ -432,29 +379,10 @@ label {
   }
 }
 
-.custom-file-upload {
-  border: 1px solid;
-  display: block;
-  padding: 6px 12px;
-  margin: 0;
-  cursor: pointer;
-  background: #fafafa;
-  border-radius: 5px;
-}
-
 .selected {
   font-weight: bold;
   border-bottom: 2px solid #fff;
   padding-bottom: 0;
-}
-
-.title input {
-  margin: 0;
-}
-
-.title label {
-  display: block;
-  text-align: start;
 }
 
 .link-container {
@@ -471,6 +399,16 @@ label {
   font-size: 1.1rem;
 }
 
+.title {
+  width: 100%;
+  position: relative;
+}
+
+.title input {
+  margin: 0;
+  padding-left: 3.5rem;
+}
+
 .series {
   display: flex;
   flex-direction: row;
@@ -480,12 +418,13 @@ label {
   flex-direction: row;
   justify-items: flex-start;
   align-items: center;
-  width: 18%;
+  width: 50%;
   margin: 2rem 0;
   position: relative;
 }
 
-.series > div > span {
+.series > div > span,
+.title > span {
   position: absolute;
   left: 0;
   width: 2rem;
@@ -497,11 +436,16 @@ label {
   overflow: hidden;
 }
 
+.title span {
+  width: 3rem;
+}
+
 .series .episode input {
   border-radius: 0 5px 5px 0;
 }
 .series .season span,
-.series .season input {
+.series .season input,
+.title span {
   border-radius: 5px 0 0 5px;
   border-right: 1px solid #bbb;
 }

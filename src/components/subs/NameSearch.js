@@ -53,8 +53,14 @@ const NameSearch = () => {
       </div>
       <form onSubmit={onSubmit} className='form-text'>
         <div className='title'>
-          <label htmlFor='title'>Title:</label>
-          <input type='text' name='title' value={title} onChange={onChange} />
+          <span>Title</span>
+          <input
+            type='text'
+            name='title'
+            value={title}
+            onChange={onChange}
+            placeholder='Enter movie or serie title'
+          />
         </div>
         <div className='series'>
           <div className='season'>
