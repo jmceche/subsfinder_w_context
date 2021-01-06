@@ -20,7 +20,6 @@ const SubList = () => {
         {subs.length > 0 &&
           subs.map((sub) => (
             <CSSTransition
-              in={subs}
               key={sub.IDSubtitleFile}
               timeout={500}
               classNames='item'
