@@ -3,6 +3,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import DownloadButton from "../layout/DownloadButton";
 
 const SubItem = ({
   title,
@@ -13,19 +14,19 @@ const SubItem = ({
   movieKind,
   serieSeason,
   serieEpisode,
-  subFormat,
+  subFormat
 }) => {
   return (
-    <div id='sub-card' className='card'>
-      <h3 className='text-center lead'>{title}</h3>
+    <div id="sub-card" className="card">
+      <h3 className="text-center lead">{title}</h3>
       {movieKind === "episode" && (
         <p>{`S${serieSeason.padStart(2, "0")}E${serieEpisode.padStart(
           2,
           "0"
         )}`}</p>
       )}
-      <div className='link-container'>
-        <a className='wrapper' href={subLink}>
+      <div className="link-container">
+        <a className="wrapper" href={subLink}>
           {subFile}
         </a>
       </div>
@@ -35,18 +36,13 @@ const SubItem = ({
       <p>
         <strong>Uploaded:</strong> {uploadDate}
       </p>
-      <a
-        href={subLink.slice(0, -2) + subFormat}
-        className='btn btn-block btn-primary text-center'
-      >
-        Download
-      </a>
+      <DownloadButton subLink={subLink} subFormat={subFormat} />
     </div>
   );
 };
 
 SubItem.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default SubItem;

@@ -6,7 +6,7 @@ const Navbar = ({ title }) => {
   useEffect(() => {}, []);
 
   return (
-    <nav className='navbar bg-primary'>
+    <nav className='navbar z'>
       <h1>{title}</h1>
       <div className='searches'>
         <NavLink exact to='/' activeClassName='selected'>
